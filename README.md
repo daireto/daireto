@@ -48,6 +48,6 @@ I love building efficient and scalable solutions using modern technologies.
 ⚙️ Process Automation | 🤖 RPAs | 🤖 Bot Development
 
 ## 📫 Connect with Me
-- 🔗 [LinkedIn](https://linkedin.com/in/YOUR_USERNAME)
-- 🐙 [GitHub (you are here)](https://github.com/YOUR_USERNAME)
+- 🔗 [LinkedIn](https://www.linkedin.com/in/dairo-mosquera/)
+- 🐙 [GitHub (you are here)](https://github.com/daireto/)
 - 📧 Email: dairoandres123@gmail.com
