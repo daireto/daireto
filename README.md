@@ -49,5 +49,5 @@ I love building efficient and scalable solutions using modern technologies.
 
 ## 📫 Connect with Me
 - 🔗 [LinkedIn](https://linkedin.com/in/YOUR_USERNAME)
-- 🐙 [GitHub](https://github.com/YOUR_USERNAME)
+- 🐙 [GitHub (you are here)](https://github.com/YOUR_USERNAME)
 - 📧 Email: dairoandres123@gmail.com
