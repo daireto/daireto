@@ -3,6 +3,7 @@
 Hi, I'm a passionate **Software Developer** with experience in **web development, automation, RPAs, and bot development**.
 I love building efficient and scalable solutions using modern technologies.
 
+- 👨🏿‍💻 Employee at [ARUS](https://www.arus.com.co/)
 - 🔭 I’m currently working on [SQLActive](https://github.com/daireto/sqlactive/)
   and [OData V4 Query](https://github.com/daireto/odata_v4_query/).
 - 🌱 I’m currently learning about Machine Learning.
