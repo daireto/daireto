@@ -5,9 +5,9 @@ I love building efficient and scalable solutions using modern technologies.
 
 - 👨🏿‍💻 Employee at [ARUS](https://www.arus.com.co/)
 - 🔭 I’m currently working on [SQLActive](https://github.com/daireto/sqlactive/)
-  and [OData V4 Query](https://github.com/daireto/odata_v4_query/).
-- 🌱 I’m currently learning about Machine Learning.
-- 💬 Ask me about anything, i am always happy to help.
+  and [OData V4 Query](https://github.com/daireto/odata_v4_query/)
+- 🌱 I’m currently learning about Machine Learning
+- 💬 Ask me about anything, i am always happy to help
 - 📫 How to reach me: dairoandres123@gmail.com
 
 ## 🚀 Tech Stack
