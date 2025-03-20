@@ -24,6 +24,7 @@ alias repos='cd ~/Projects/Repos'
 alias new_venv='python -m venv venv'
 alias source_venv='source venv/Scripts/activate'
 alias pip_req='pip install -r requirements.txt'
+alias pip_no_ssl='python -m pip install --trusted-host pypi.org --trusted-host pypi.python.org --trusted-host files.pythonhosted.org'
 
 # Bash shell settings
 # Typing a directory name just by itself will automatically change into that directory.
