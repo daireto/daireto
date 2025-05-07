@@ -1,103 +1,115 @@
-"""Logger configuration to use ``colorlog.ColoredFormatter``
-as the default formatter.
+"""Logger configuration.
 
-Visit https://pypi.org/project/colorlog/ for more information.
+Install loguru with:
+    pip install loguru
 """
 
-import logging
 import os
 import socket
-from logging.config import dictConfig
+import sys
+from datetime import time, timedelta
 
-# Formats
-_STANDARD_FMT = '%(asctime)s | %(levelname)-8s | %(message)s'
-_COLORED_FMT = '%(log_color)s%(asctime)s%(reset)s | %(log_color)s%(levelname)-8s%(reset)s | %(log_color)s%(message)s%(reset)s'
-_DATEFMT = '%Y-%m-%d %H:%M:%S'
-
-# File rotation
-_MAX_BYTES = 100 * 1024 * 1024  # 100 mb
-_BACKUP_COUNT = 4
-_LOCAL_LOGS_FOLDER = '.logs'
-_DOCKER_LOGS_FOLDER = '/usr/logs'
+from loguru import logger
 
 
-def set_logger_conf(
-    file_rotation: bool = False,
-    max_bytes: int = _MAX_BYTES,
-    backup_count: int = _BACKUP_COUNT,
-    local_logs_folder: str = _LOCAL_LOGS_FOLDER,
+def setup_logger(
+    level: str | int = 'INFO',
+    fmt: str | None = None,
+    alignment_width: int = 8,
+    backtrace: bool = False,
+    diagnose: bool = False,
+    enqueue: bool = False,
+    use_file: bool = False,
+    rotation: str | int | time | timedelta | None = None,
+    retention: str | int | timedelta | None = None,
+    filename: str | None = None,
+    dst: str | None = None,
     on_docker: bool = False,
-    docker_logs_folder: str = _DOCKER_LOGS_FOLDER,
 ) -> None:
-    """Sets the logging configuration.
+    """Sets up logger.
 
     Parameters
     ----------
-    file_rotation : bool, optional
-        Whether to add the file rotation handler, by default False.
-    max_bytes : int, optional
-        Maximum size of each log size, by default _MAX_BYTES.
-    backup_count : int, optional
-        Maximum number of log files, by default _BACKUP_COUNT.
-    local_logs_folder : str, optional
-        Path of the local logs folder, by default _LOCAL_LOGS_FOLDER.
-    on_docker : bool, optional
-        If the program is running on a Docker container,
+    level : str | int, optional
+        Logger level, by default 'INFO'.
+    fmt : str | None, optional
+        Format, by default None.
+    alignment_width : int, optional
+        Alignment width, by default 8.
+    backtrace : bool, optional
+        Whether to show backtrace, by default False.
+    diagnose : bool, optional
+        Whether to show diagnose. Be careful with this,
+        as it may leak sensitive information. By default False.
+    enqueue : bool, optional
+        Whether to enqueue the messages to ensure logs integrity,
         by default False.
-    docker_logs_folder : str, optional
-        Path of the Docker container logs folder,
-        by default _DOCKER_LOGS_FOLDER.
+    use_file : bool, optional
+        Whether to add a file handler, by default False.
+    rotation : str | int | time | timedelta | None, optional
+        The rotation to use if ``use_file`` is True,
+        for example '10 MB', by default None.
+    retention : str | int | timedelta | None, optional
+        The retention to use if ``use_file`` is True,
+        for example '10 days', by default None.
+    filename : str | None, optional
+        Filename to use if ``use_file`` is True, by default None.
+        If None, it will be set to ``{socket.gethostname()}.log``
+        if ``on_docker`` is True, and ``main.log`` otherwise.
+    dst : str | None, optional
+        Destination folder to use if ``use_file`` is True,
+        by default None. If None, it will be set to ``/var/log/app``
+        if ``on_docker`` is True, and ``.logs`` otherwise.
+    on_docker : bool, optional
+        Whether the app is running on docker, by default False.
+
+    Examples
+    --------
+    >>> setup_logger(level='DEBUG')
+    >>> logger.debug('debug')
+    2025-05-05 11:46:36 | DEBUG    | __main__:<module>:1 - debug
+    >>> setup_logger(fmt='<level>{message}</level>')
+    >>> logger.info('info')
+    info
     """
-    formatters = {
-        'standard': {
-            '()': 'logging.Formatter',
-            'fmt': _STANDARD_FMT,
-            'datefmt': _DATEFMT,
-        },
-        'colored': {
-            '()': 'colorlog.ColoredFormatter',
-            'format': _COLORED_FMT,
-            'datefmt': _DATEFMT,
-        },
-    }
+    logger.remove()
 
-    handlers = {
-        'console': {
-            '()': 'logging.StreamHandler',
-            'formatter': 'colored',
-            'level': logging.DEBUG,
-        }
-    }
-
-    if file_rotation:
-        path = docker_logs_folder if on_docker else local_logs_folder
-        os.makedirs(path, exist_ok=True)
-
-        file = f'{socket.gethostname()}.log' if on_docker else 'info.log'
-        filepath = os.path.join(path, file)
-
-        handlers['file'] = {
-            'level': logging.DEBUG,
-            'formatter': 'standard',
-            'class': 'logging.handlers.RotatingFileHandler',
-            'filename': filepath,
-            'maxBytes': max_bytes,
-            'backupCount': backup_count,
-            'encoding': 'utf8',
-        }
-
-    dictConfig(
-        {
-            'version': 1,
-            'formatters': formatters,
-            'handlers': handlers,
-            'root': {
-                'handlers': list(handlers.keys()),
-                'level': logging.DEBUG,
-            },
-        }
+    fmt = (
+        fmt
+        or (
+            '<green>{time:YYYY-MM-DD HH:mm:ss}</green>'
+            ' | <level>{level: <%d}</level>'
+            ' | <cyan>{name}</cyan>:<cyan>{function}</cyan>:<cyan>{line}</cyan>'
+            ' - <level>{message}</level>'
+        )
+        % alignment_width
     )
 
+    logger.add(
+        sink=sys.stderr,
+        level=level,
+        format=fmt,
+        backtrace=backtrace,
+        diagnose=diagnose,
+        enqueue=enqueue,
+    )
 
-logger = logging.getLogger()
-"""Colored logger instance."""
+    if use_file:
+        dst = dst or ('/var/log/app' if on_docker else '.logs')
+        os.makedirs(dst, exist_ok=True)
+        file = filename or (
+            f'{socket.gethostname()}.log' if on_docker else 'main.log'
+        )
+        logger.add(
+            os.path.join(dst, file),
+            level=level,
+            format=fmt,
+            rotation=rotation,
+            retention=retention,
+            backtrace=backtrace,
+            diagnose=diagnose,
+            enqueue=enqueue,
+        )
+
+
+setup_logger()
