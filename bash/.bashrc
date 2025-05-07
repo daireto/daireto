@@ -21,6 +21,8 @@ alias projects='cd ~/Projects'
 alias repos='cd ~/Projects/Repos'
 
 # Python aliases
+alias py='python'
+alias pym='python -m'
 alias nvenv='python -m venv venv'
 alias svenv='source venv/Scripts/activate'
 alias dvenv='deactivate'
