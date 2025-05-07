@@ -36,7 +36,7 @@ shopt -s autocd
 # Automatically fix directory name typos when changing directory.
 shopt -s cdspell
 
-# Automatically expand directory globs and fix directory name typos whilst completing. 
+# Automatically expand directory globs and fix directory name typos whilst completing.
 # Note, this works in conjuction with the cdspell option listed above.
 shopt -s direxpand dirspell
 
