@@ -1,7 +1,7 @@
 # PATH to Python
 
-# Replace xx with your Python Scripts folder
-export PATH="$PATH:/c/Users/user/AppData/Local/Packages/PythonSoftwareFoundation.Python.3.xx/LocalCache/local-packages/Python3xx/Scripts"
+# Replace xx with your Python Scripts folder and <user> with your username
+export PATH="$PATH:/c/Users/<user>/AppData/Local/Packages/PythonSoftwareFoundation.Python.3.xx/LocalCache/local-packages/Python3xx/Scripts"
 
 # Bash prompt
 . ~/.bash_prompt
@@ -21,10 +21,11 @@ alias projects='cd ~/Projects'
 alias repos='cd ~/Projects/Repos'
 
 # Python aliases
-alias new_venv='python -m venv venv'
-alias source_venv='source venv/Scripts/activate'
-alias pip_req='pip install -r requirements.txt'
-alias pip_no_ssl='python -m pip install --trusted-host pypi.org --trusted-host pypi.python.org --trusted-host files.pythonhosted.org'
+alias nvenv='python -m venv venv'
+alias svenv='source venv/Scripts/activate'
+alias dvenv='deactivate'
+alias pi='pip install'
+alias pireq='pip install -r requirements.txt'
 
 # Bash shell settings
 # Typing a directory name just by itself will automatically change into that directory.
