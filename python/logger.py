@@ -19,11 +19,13 @@ def setup_logger(
     backtrace: bool = False,
     diagnose: bool = False,
     enqueue: bool = False,
+    colorize: bool = False,
     use_file: bool = False,
     rotation: str | int | time | timedelta | None = None,
     retention: str | int | timedelta | None = None,
     filename: str | None = None,
-    dst: str | None = None,
+    dst: str = '.logs',
+    docker_dst: str = '/var/log/app',
     on_docker: bool = False,
 ) -> None:
     """Sets up logger.
@@ -35,7 +37,7 @@ def setup_logger(
     fmt : str | None, optional
         Format, by default None.
     alignment_width : int, optional
-        Alignment width, by default 8.
+        Alignment width of the level name, by default 8.
     backtrace : bool, optional
         Whether to show backtrace, by default False.
     diagnose : bool, optional
@@ -44,6 +46,8 @@ def setup_logger(
     enqueue : bool, optional
         Whether to enqueue the messages to ensure logs integrity,
         by default False.
+    colorize : bool, optional
+        Whether to colorize the output, by default False.
     use_file : bool, optional
         Whether to add a file handler, by default False.
     rotation : str | int | time | timedelta | None, optional
@@ -56,10 +60,12 @@ def setup_logger(
         Filename to use if ``use_file`` is True, by default None.
         If None, it will be set to ``{socket.gethostname()}.log``
         if ``on_docker`` is True, and ``main.log`` otherwise.
-    dst : str | None, optional
-        Destination folder to use if ``use_file`` is True,
-        by default None. If None, it will be set to ``/var/log/app``
-        if ``on_docker`` is True, and ``.logs`` otherwise.
+    dst : str, optional
+        Destination folder to use if ``use_file`` is True and
+        ``on_docker`` is False, by default '.logs'.
+    docker_dst : str, optional
+        Destination folder to use if ``use_file`` is True and
+        ``on_docker`` is True, by default '/var/log/app'.
     on_docker : bool, optional
         Whether the app is running on docker, by default False.
 
@@ -92,16 +98,22 @@ def setup_logger(
         backtrace=backtrace,
         diagnose=diagnose,
         enqueue=enqueue,
+        colorize=colorize,
     )
 
     if use_file:
-        dst = dst or ('/var/log/app' if on_docker else '.logs')
-        os.makedirs(dst, exist_ok=True)
-        file = filename or (
-            f'{socket.gethostname()}.log' if on_docker else 'main.log'
-        )
+        filepath = (
+            filename
+            or (f'{socket.gethostname()}.log' if on_docker else 'main.log')
+        ).strip()
+
+        dst = (docker_dst if on_docker else dst).strip()
+        if dst:
+            os.makedirs(dst, exist_ok=True)
+            filepath = os.path.join(dst, filepath)
+
         logger.add(
-            os.path.join(dst, file),
+            filepath,
             level=level,
             format=fmt,
             rotation=rotation,
@@ -109,6 +121,7 @@ def setup_logger(
             backtrace=backtrace,
             diagnose=diagnose,
             enqueue=enqueue,
+            colorize=colorize,
         )
 
 
