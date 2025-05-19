@@ -30,6 +30,8 @@ alias pi='pip install'
 alias pireq='pip install -r requirements.txt'
 
 # Bash shell settings
+PROMPT_COMMAND='history -a'
+
 # Typing a directory name just by itself will automatically change into that directory.
 shopt -s autocd
 
