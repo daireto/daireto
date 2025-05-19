@@ -86,6 +86,9 @@ function set_bash_prompt () {
   # Set the bash prompt variable.
   PS1="🕒 \A | ${PYTHON_VIRTUALENV}📁 ${YELLOW}\w${COLOR_NONE}${BRANCH}
 ${PROMPT_SYMBOL} "
+
+  # Set history
+  history -a
 }
 
 # Tell bash to execute this function just before displaying its prompt.
