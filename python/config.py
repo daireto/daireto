@@ -8,43 +8,7 @@ from typing import Literal, Union, get_args, get_origin
 
 from dotenv import load_dotenv
 
-
-def strtobool(val: str) -> Literal[0, 1]:
-    """Converts a string representation of truth to
-    true (1) or false (0).
-
-    True values are ``y``, ``yes``, ``t``, ``true``, ``on``, and ``1``;
-    false values are ``n``, ``no``, ``f``, ``false``, ``off``, and ``0``.
-
-    Raises
-    ------
-    ValueError
-        If ``'val`` is anything else.
-
-    Examples
-    --------
-    >>> strtobool('YES')
-    1
-    >>> strtobool('yes')
-    1
-    >>> strtobool('no')
-    0
-    >>> strtobool('1')
-    1
-    >>> strtobool('0')
-    0
-    >>> strtobool('true')
-    1
-    >>> strtobool('false')
-    0
-    """
-    val = val.lower().strip()
-    if val in ('y', 'yes', 't', 'true', 'on', '1'):
-        return 1
-    elif val in ('n', 'no', 'f', 'false', 'off', '0'):
-        return 0
-    else:
-        raise ValueError(f'invalid truth value {val!r}')
+from .utils import strtobool
 
 
 class EnforcedDataclassMixin:
