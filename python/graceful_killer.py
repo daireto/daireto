@@ -1,3 +1,5 @@
+"""GracefulKiller class for process SIGTERM, SIGHUP and SIGINT signals gracefully."""
+
 import signal
 
 
