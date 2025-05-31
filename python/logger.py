@@ -5,7 +5,6 @@ Install loguru with:
 """
 
 import os
-import socket
 import sys
 from datetime import time, timedelta
 
@@ -102,10 +101,7 @@ def setup_logger(
     )
 
     if use_file:
-        filepath = (
-            filename
-            or (f'{socket.gethostname()}.log' if on_docker else 'main.log')
-        ).strip()
+        filepath = (filename or 'main.log').strip()
 
         dst = (docker_dst if on_docker else dst).strip()
         if dst:
