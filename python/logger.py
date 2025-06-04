@@ -4,9 +4,9 @@ Install loguru with:
     pip install loguru
 """
 
-import os
 import sys
 from datetime import time, timedelta
+from pathlib import Path
 
 from loguru import logger
 
@@ -37,6 +37,7 @@ def setup_logger(
         Format, by default None.
     alignment_width : int, optional
         Alignment width of the level name, by default 8.
+        Used only with the default format (if ``fmt`` is None).
     backtrace : bool, optional
         Whether to show backtrace, by default False.
     diagnose : bool, optional
@@ -52,13 +53,14 @@ def setup_logger(
     rotation : str | int | time | timedelta | None, optional
         The rotation to use if ``use_file`` is True,
         for example '10 MB', by default None.
+        Visit the `loguru documentation <https://loguru.readthedocs.io/en/stable/overview.html#easier-file-logging-with-rotation-retention-compression>`_
+        for more information.
     retention : str | int | timedelta | None, optional
-        The retention to use if ``use_file`` is True,
+        The retention to use for rotated files if ``use_file`` is True,
         for example '10 days', by default None.
     filename : str | None, optional
         Filename to use if ``use_file`` is True, by default None.
-        If None, it will be set to ``{socket.gethostname()}.log``
-        if ``on_docker`` is True, and ``main.log`` otherwise.
+        If None, it will be set to ``main.log``.
     dst : str, optional
         Destination folder to use if ``use_file`` is True and
         ``on_docker`` is False, by default '.logs'.
@@ -105,8 +107,8 @@ def setup_logger(
 
         dst = (docker_dst if on_docker else dst).strip()
         if dst:
-            os.makedirs(dst, exist_ok=True)
-            filepath = os.path.join(dst, filepath)
+            Path(dst).mkdir(parents=True, exist_ok=True)
+            filepath = Path(dst) / filepath
 
         logger.add(
             filepath,
