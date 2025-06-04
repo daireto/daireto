@@ -47,19 +47,16 @@ These are some of the Python packages i have been working on:
 ![SQL Server](https://img.shields.io/badge/SQL_Server-CC2927?style=for-the-badge&logo=microsoftsqlserver&logoColor=white)
 ![Redis](https://img.shields.io/badge/redis-%23DD0031.svg?style=for-the-badge&logo=redis&logoColor=white)
 
-### **Cloud & DevOps**
-![Azure](https://img.shields.io/badge/Azure-0078D4?style=for-the-badge&logo=microsoftazure&logoColor=white)
+### **Deployment**
 ![Kubernetes](https://img.shields.io/badge/Kubernetes-326CE5?style=for-the-badge&logo=kubernetes&logoColor=white)
 ![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)
 ![Nginx](https://img.shields.io/badge/nginx-%23009639.svg?style=for-the-badge&logo=nginx&logoColor=white)
 
-### **Messaging & Queues**
-![RabbitMQ](https://img.shields.io/badge/RabbitMQ-FF6600?style=for-the-badge&logo=rabbitmq&logoColor=white)
-
-### **Automation & RPA**
-⚙️ Process Automation | 🤖 RPAs | 🤖 Bot Development
+### **Cloud & DevOps**
+![AWS](https://img.shields.io/badge/AWS-%23FF9900.svg?style=for-the-badge&logo=amazon-aws&logoColor=white)
+![Azure](https://img.shields.io/badge/Azure-0078D4?style=for-the-badge&logo=microsoftazure&logoColor=white)
 
 ## 📫 Connect with Me
-- 🔗 [LinkedIn](https://www.linkedin.com/in/dairo-mosquera/)
-- 🐙 [GitHub (you are here)](https://github.com/daireto/)
-- 📧 Email: dairoandres123@gmail.com
+- [LinkedIn](https://www.linkedin.com/in/dairo-mosquera/)
+- [GitHub (you are here)](https://github.com/daireto/)
+- Email: dairoandres123@gmail.com
