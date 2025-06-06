@@ -1,3 +1,9 @@
+# Copilot Prompt
+
+Create the release notes for the new release vx.x.x in markdown format and english language. Ignore sections that don't have any relevant changes. For example, if there are no new features, don't include the "Added" section, and the same for the rest of the sections.
+
+# Template
+
 ## [X.X.X](https://github.com/daireto/<repo>/compare/vx.x.x...vy.y.y) (YYYY-mm-dd)
 
 > A brief description of the release.
