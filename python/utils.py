@@ -80,6 +80,28 @@ def timer(func: Callable) -> Callable:
     return wrapper
 
 
+def md5sum(filepath: str) -> str:
+    """Calculates MD5 checksum.
+
+    Parameters
+    ----------
+    filepath : str
+        File path.
+
+    Returns
+    -------
+    str
+        MD5 checksum.
+    """
+    h = hashlib.md5()
+    b = bytearray(128 * 1024)
+    mv = memoryview(b)
+    with open(filepath, 'rb', buffering=0) as f:
+        for n in iter(lambda: f.readinto(mv), 0):
+            h.update(mv[:n])
+    return h.hexdigest()
+
+
 def sha256sum(filepath: str) -> str:
     """Calculates SHA256 checksum.
 
