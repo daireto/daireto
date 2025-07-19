@@ -5,18 +5,6 @@
 # Bash prompt
 . ~/.bash_prompt
 
-# Start services
-if ! pgrep -x "sshd" > /dev/null; then
-    sudo service ssh start
-fi
-if ! pgrep -x "vsftpd" > /dev/null; then
-    sudo service vsftpd start
-fi
-if ! pgrep -x "dockerd" > /dev/null; then
-    sudo service docker start
-fi
-clear
-
 # If not running interactively, don't do anything
 case $- in
     *i*) ;;
@@ -143,6 +131,7 @@ if ! shopt -oq posix; then
   fi
 fi
 
+# Added after installing NVM
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
@@ -158,8 +147,7 @@ alias projects='cd ~/projects'
 alias python='python3'
 alias py='python3'
 alias pym='python3 -m'
-alias nvenv='python3 -m venv venv'
-alias svenv='source venv/bin/activate'
+alias svenv='source .venv/bin/activate'
 alias dvenv='deactivate'
-alias pi='python3 -m pip install --trusted-host pypi.org --trusted-host pypi.python.org --trusted-host files.pythonhosted.org'
-alias pireq='python3 -m pip install --trusted-host pypi.org --trusted-host pypi.python.org --trusted-host files.pythonhosted.org -r requirements.txt'
+alias pi='python3 -m pip install'
+alias pireq='python3 -m pip install -r requirements.txt'
