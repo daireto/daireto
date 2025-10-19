@@ -14,3 +14,13 @@ Tipos de commits más comunes y recomendados basados en [la convención de Angul
 - `style`: Se aplica a cambios que no afectan el significado del código (correcciones de formato, espacios en blanco, linting, etc.). Por ejemplo: "style: Apply code formatting according to PEP 8".
 - `test`: Se utiliza para añadir o modificar pruebas unitarias o de integración. Por ejemplo: "test: Add unit tests for user service".
 - `chore`: Se usa para otras tareas que no entran en las categorías anteriores. Esto puede incluir la actualización de dependencias, cambios en archivos de configuración (como .gitignore), tareas de mantenimiento, etc. Por ejemplo: "chore: Update dependencies to latest versions".
+
+El formato del mensaje del commit debería ser como el siguiente:
+
+```text
+<tipo>: <descripción>
+
+<descripción más larga, de ser necesario, explicando detalladamente los cambios>
+
+<referencia al issue, tarea o pull request, si aplica>
+```
