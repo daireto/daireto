@@ -3,7 +3,7 @@
 Hi, I'm a passionate **Software Developer** with experience in **web development, automation, RPAs, and bot development**.
 I love building efficient and scalable solutions using modern technologies.
 
-These are some of the Python packages i have been working on:
+These are some of the Python packages i have developed:
 - [SQLActive](https://github.com/daireto/sqlactive/)
 - [Starlette DI](https://github.com/daireto/starlette-di/)
 - [OData V4 Query](https://github.com/daireto/odata-v4-query/)
@@ -12,8 +12,6 @@ These are some of the Python packages i have been working on:
 
 ### **Languages**
 ![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
-![Rust](https://img.shields.io/badge/rust-%23000000.svg?style=for-the-badge&logo=rust&logoColor=white)
-![C++](https://img.shields.io/badge/c++-%2300599C.svg?style=for-the-badge&logo=c%2B%2B&logoColor=white)
 ![C#](https://img.shields.io/badge/C%23-239120?style=for-the-badge&logo=csharp&logoColor=white)
 ![SQL](https://img.shields.io/badge/SQL-CC2927?style=for-the-badge&logo=microsoftsqlserver&logoColor=white)
 ![PowerShell](https://img.shields.io/badge/PowerShell-%235391FE.svg?style=for-the-badge&logo=powershell&logoColor=white)
@@ -54,7 +52,6 @@ These are some of the Python packages i have been working on:
 
 ### **Cloud & DevOps**
 ![AWS](https://img.shields.io/badge/AWS-%23FF9900.svg?style=for-the-badge&logo=amazon-aws&logoColor=white)
-![Azure](https://img.shields.io/badge/Azure-0078D4?style=for-the-badge&logo=microsoftazure&logoColor=white)
 
 ## 📫 Connect with Me
 - [LinkedIn](https://www.linkedin.com/in/dairo-mosquera/)
