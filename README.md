@@ -7,6 +7,7 @@ These are some of the Python packages i have developed:
 - [SQLActive](https://github.com/daireto/sqlactive/)
 - [Starlette DI](https://github.com/daireto/starlette-di/)
 - [OData V4 Query](https://github.com/daireto/odata-v4-query/)
+- [Simple Result](https://github.com/daireto/simple-result)
 
 ## 🚀 Tech Stack
 
