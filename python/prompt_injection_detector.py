@@ -159,8 +159,8 @@ class PromptInjectionDetector:
                 print(
                     f'{result:<8} | '
                     f'{prompt[:60]:<60} | '
-                    f'{str(expected):<8} | '
-                    f'{str(predicted):<9} | '
+                    f'{expected!s:<8} | '
+                    f'{predicted!s:<9} | '
                     f'{malicious_probability:<10.4f} | '
                     f'{elapsed:<10.2f}'
                 )
